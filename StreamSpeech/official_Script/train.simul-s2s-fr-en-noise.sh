@@ -5,8 +5,10 @@ export PYTHONPATH=$PYTHONPATH:/gscratch/intelligentsystems/tuochao/Spatial-Strea
 LANG=fr
 DATA_ROOT=/scr/mixing_data_streamspeech_fr/cvss/cvss-c
 DATA=$DATA_ROOT/${LANG}-en/fbank2unit
-CKPT=/gscratch/intelligentsystems/shared_runs/translation_demo/xxxx
-FINETUNE_FROM=/gscratch/intelligentsystems/shared_runs/translation/simul-s2st.singlechannel-fr-fix2/checkpoint_best.pt
+
+### change the model path
+CKPT=XXX/simul-s2s-${LANG}-en-ftnoise # the save path to save the training model checkpoints
+FINETUNE_FROM=XXX/simul-s2s-${LANG}-en/checkpoint_best.pt # the save path to load the pretrained base model
 
 
 fairseq-train $DATA \

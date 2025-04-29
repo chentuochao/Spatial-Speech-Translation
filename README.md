@@ -68,6 +68,8 @@ Train step2
 ```
 python src/train.py --config ./config/angle_sep_alllang_small_ft.json --run_dir /gscratch/intelligentsystems/shared_runs/translation/angle_sep_alllang_fdown_ft
 ```
+You can also use trained [checkpoints](https://drive.google.com/file/d/1d2EfJteg6xRmYPH4g4rjXDw4LkBGJBjo/view?usp=share_link)
+
 
 ### Inference of separation and localiaztion on noisy mixture
 Prepare test set for separation and localiaztion
@@ -86,7 +88,7 @@ python test_sep.py /gscratch/intelligentsystems/shared_runs/translation/angle_se
 ```
 
 ### Train Translation Module (FR-EN)
-Three-step training recipe
+Three-step training recipe, or you can use trained [checkpoints](https://drive.google.com/drive/folders/1FzSMhGmIYJtt1jaQJGkcRy6HbXmNd_vl?usp=sharing)
 
 (1) Pretrain the base speech translation model
 

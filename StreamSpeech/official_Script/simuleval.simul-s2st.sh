@@ -11,16 +11,11 @@ VOCODER_CKPT=$PRETRAIN_ROOT/unit-based_HiFi-GAN_vocoder/mHuBERT.layer11.km1000.e
 VOCODER_CFG=$PRETRAIN_ROOT/unit-based_HiFi-GAN_vocoder/mHuBERT.layer11.km1000.en/config.json
 
 LANG=fr
-# file=/gscratch/intelligentsystems/shared_runs/translation_demo/simul-s2st.singlechannel-fr-en-finetune-noise-old/checkpoint_best.pt
-file=/gscratch/intelligentsystems/shared_runs/translation/simul-s2st.singlechannel-fr-fix2/checkpoint_best.pt
-# file=/gscratch/intelligentsystems/shared_runs/translation/simul-s2st.singlechannel-fr-fix2/checkpoint_best.pt
-# file=/gscratch/intelligentsystems/shared_runs/translation/simul-s2st.singlechannel-fr-en-finetune-sep-mix-changed-dict/checkpoint_best.pt
+file=XXX/simul-s2s-${LANG}-en-ftnoise/checkpoint_best.pt
 
-output_dir=$ROOT/official_res/streamspeech.simultaneous.${LANG}-en/demo_mix
-# TGT_file=/scr/blind_sep_alllang_small/${LANG}/test/target.txt 
-# SRC_file=/scr/blind_sep_alllang_small/${LANG}/test/wav_list.txt
-TGT_file=/mmfs1/gscratch/intelligentsystems/tuochao/offical_git/demo_debug/mix_gt.txt
-SRC_file=/mmfs1/gscratch/intelligentsystems/tuochao/offical_git/demo_debug/mix_list.txt
+output_dir=$ROOT/result/streamspeech.simultaneous.${LANG}-en/output
+TGT_file=/scr/blind_sep_alllang_small/${LANG}/test/target.txt 
+SRC_file=/scr/blind_sep_alllang_small/${LANG}/test/wav_list.txt
 
 chunk_size=960
 

@@ -5,8 +5,9 @@ export PYTHONPATH=$PYTHONPATH:/gscratch/intelligentsystems/tuochao/Spatial-Strea
 LANG=fr
 DATA_ROOT=/scr/data_streamspeech/cvss/cvss-c
 DATA=$DATA_ROOT/${LANG}-en/fbank2unit
-CKPT=/gscratch/intelligentsystems/shared_runs/translation_demo/simul-s2s.singlechannel-${LANG}-en
 
+### change the model path
+CKPT=XXX/simul-s2s-${LANG}-en # the save path to save the training model checkpoints
 # update-freq * num_GPU be constant 4* 2
 
 fairseq-train $DATA \
