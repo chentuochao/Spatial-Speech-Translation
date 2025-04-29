@@ -52,7 +52,7 @@ conda install -c conda-forge sox
 conda install conda-forge::ffmpeg
 ```
 
-## 🏋️‍♂️ Model training
+## 🏋️‍♂️ Model training and Inference
 
 ### Train the Joint Separation & Localization model
 Prepare spatialized mixing dataset ([Download](https://drive.google.com/file/d/1qTYQvg_LFeodnQEMxEGY4zQ1ZP6McreP/view?usp=sharing))
@@ -69,44 +69,62 @@ Train step2
 python src/train.py --config ./config/angle_sep_alllang_small_ft.json --run_dir /gscratch/intelligentsystems/shared_runs/translation/angle_sep_alllang_fdown_ft
 ```
 
-### Inference the binuaral model
-Inference on synthetic dataset
+### Inference of separation and localiaztion on noisy mixture
+Prepare test set for separation and localiaztion
+```
+./unzip_testset.sh
+```
+
+Inference on synthetic dataset without background noise
 ```
 python test_sep.py /gscratch/intelligentsystems/shared_runs/translation/angle_sep_alllang_fdown_ft/
 ```
 
-Inference on real-world dataset
+Inference on synthetic dataset with background noise
 ```
-python test_realworld.py fr_q --run_dir /gscratch/intelligentsystems/shared_runs/translation/angle_sep_alllang_fdown_ft/
+python test_sep.py /gscratch/intelligentsystems/shared_runs/translation/angle_sep_alllang_fdown_ft/ --use_noise
 ```
 
+### Train Translation Module (FR-EN)
+Three-step training recipe
 
-## Translation Module (FR-EN)
-### Pretrain the base speech translation model
+(1) Pretrain the base speech translation model
+
 Download the processed COVOST and CVSS [dataset](https://drive.google.com/file/d/1Y3qQVZdSEj3f_BXn7b9r4TLcybv5S1RR/view?usp=sharing)
 ```
 tar -xvf /gscratch/intelligentsystems/common_datasets/translation/data_stream_1channel_processed.tar.gz -C DATA_FOLDER
 ./official_Script/train.simul-s2s-fr-en.sh
 ```
 
-### Separation-aware finetune on base model
+(2) Separation-aware finetune on base model
+
 Download the processed COVOST and CVSS  [dataset](https://drive.google.com/file/d/1Lpsg3wo6l5vubJ8KDiANId0bW3Xc7MSP/view?usp=sharing) with imperfect Separation
 ```
 tar -xvf /gscratch/intelligentsystems/common_datasets/translation/mixing_dataset_fr_processed.tar -C DATA_FOLDER
 ./official_Script/train.simul-s2s-fr-en-noise.sh
 ```
 
-### Train the expressive speech unit generator
+(3) Train the expressive speech unit generator
+
 Download the processed COVOST and CVSS [dataset](https://drive.google.com/file/d/1PRexFNCZxhxT8lw8v7DVaIab-YloJjGr/view?usp=sharing) with expressive units
 ```
 tar -xvf /gscratch/intelligentsystems/common_datasets/translation/data_stream_1channel_seamless.tar -C DATA_FOLDER
 ./official_Script/train.simul-s2s-finetune-noise-expressive.sh
 ```
 
-### Inference
+### Inference for translation
+Run evaluation on the separated audio from the separation and localiaztion without expressive output
 ```
+tar -xvf /gscratch/intelligentsystems/common_datasets/translation/data_stream_1channel_processed.tar.gz -C DATA_FOLDER
 tar -xvf /gscratch/intelligentsystems/common_datasets/translation/blind_sep_alllang_small_dev.tar -C DATA_FOLDER
 ./official_Script/simuleval.simul-s2st.sh
+```
+
+Run evaluation on the separated audio from the separation and localiaztion with expressive output
+```
+tar -xvf /gscratch/intelligentsystems/common_datasets/translation/data_stream_1channel_seamless.tar -C DATA_FOLDER
+tar -xvf /gscratch/intelligentsystems/common_datasets/translation/blind_sep_alllang_small_dev.tar -C DATA_FOLDER
+./official_Scriptsimuleval.simul-s2st-expressive.sh
 ```
 
 
