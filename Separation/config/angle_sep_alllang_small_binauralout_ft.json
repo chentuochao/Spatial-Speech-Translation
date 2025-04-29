@@ -1,0 +1,62 @@
+{
+    "project_name": "translation",
+    "pl_module": "src.hl_modules.ts_hear_angle_sep_pl_module.PLModule",
+    "pl_logger": "src.hl_modules.ts_hear_angle_sep_pl_module.DistanceBasedLogger",
+    "pl_module_args": {
+        "metrics":["snr_i", "si_snr_i", "si_sdr_i"],
+        "init_ckpt": "/gscratch/intelligentsystems/shared_runs/translation/angle_sep_alllang_fdown/checkpoints/last.pt",
+        "model": "src.models.TFGridNetComplete.net.Net",
+        "model_params": {
+            "num_src": 2,
+            "stft_chunk_size": 640,
+            "stft_pad_size": 120,
+            "stft_back_pad": 0,
+            "num_ch": 2,
+            "D": 32,
+            "L": 4,
+            "I": 1,
+            "J": 1,
+            "B": 6,
+            "H": 64,
+            "conv_lstm": true,
+            "lstm_down": 2
+        },
+        "optimizer":"torch.optim.Adam",
+        "optimizer_params":{
+            "lr":8e-4
+        },
+        "loss":"src.losses.MultiResoLoss.MultiResoFuseLoss",                                                                                  
+        "loss_params":{                                                                                                                       
+                "l1_ratio":10,                                                                                                                
+                "sample_rate": 16000,                                                                                                         
+                "perceptual_weighting": true,
+                "w_sc" : 0,
+                "w_log_mag": 0,
+                "w_lin_mag": 20
+        },
+        "scheduler":"torch.optim.lr_scheduler.ReduceLROnPlateau",
+        "scheduler_params":{
+            "mode":"min",
+            "patience":10,
+            "factor":0.5,
+            "min_lr":1e-6
+        },
+        "sr": 16000,
+        "grad_clip": 1
+    },
+    
+
+    "train_dataset": "src.datasets.dataset_mixing.Dataset",
+    "train_data_args": {
+        "input_dir": "/scr/data_blind_separation_noise_alllang/covost2/train"
+    },
+    "val_dataset": "src.datasets.dataset_mixing.Dataset",
+    "val_data_args": {
+        "input_dir": "/scr/data_blind_separation_noise_alllang/covost2/dev"
+    },
+
+    "epochs": 50,
+    "batch_size": 8,
+    "eval_batch_size": 8,
+    "num_workers": 16
+}
