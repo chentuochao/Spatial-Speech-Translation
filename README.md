@@ -52,6 +52,31 @@ conda install -c conda-forge sox
 conda install conda-forge::ffmpeg
 ```
 
+
+## 🤖 Quick try data samples
+We provide some binural mixtures as input of under data_example folder.
+For each sample, it contains
+```
+mixture.wav - binural mixtures
+metadata.json - the name, angle, source and target text in the mixture
+common***.wav - ground-truth individual speech before mixing
+```
+
+Download the checkpoints: [separation model](https://drive.google.com/file/d/1d2EfJteg6xRmYPH4g4rjXDw4LkBGJBjo/view?usp=share_link) and [translation checkpoints](https://drive.google.com/drive/folders/1FzSMhGmIYJtt1jaQJGkcRy6HbXmNd_vl?usp=sharing).
+
+Run the Separation framework, (change the data folder in the code). It will save the separated wav and wav_list.txt and gt_list.txt back to the data_example folder.
+```
+cd Separation
+python test_sample.py --run_dir SEPARATION_MODEL_PATH
+```
+Then run the translation model on the separated french wav, (change the path in the bash scripts)
+```
+cd StreamSpeech
+./official_Script/simuleval.simul-s2st-expressive.sh
+```
+
+
+
 ## 🏋️‍♂️ Model training and Inference
 
 ### Train the Joint Separation & Localization model
@@ -68,7 +93,7 @@ Train step2
 ```
 python src/train.py --config ./config/angle_sep_alllang_small_ft.json --run_dir /gscratch/intelligentsystems/shared_runs/translation/angle_sep_alllang_fdown_ft
 ```
-You can also use trained [checkpoints](https://drive.google.com/file/d/1d2EfJteg6xRmYPH4g4rjXDw4LkBGJBjo/view?usp=share_link)
+You can also use trained [separation model](https://drive.google.com/file/d/1d2EfJteg6xRmYPH4g4rjXDw4LkBGJBjo/view?usp=share_link)
 
 
 ### Inference of separation and localiaztion on noisy mixture
@@ -88,7 +113,7 @@ python test_sep.py /gscratch/intelligentsystems/shared_runs/translation/angle_se
 ```
 
 ### Train Translation Module (FR-EN)
-Three-step training recipe, or you can use trained [checkpoints](https://drive.google.com/drive/folders/1FzSMhGmIYJtt1jaQJGkcRy6HbXmNd_vl?usp=sharing)
+Three-step training recipe, or you can use trained [translation checkpoints](https://drive.google.com/drive/folders/1FzSMhGmIYJtt1jaQJGkcRy6HbXmNd_vl?usp=sharing)
 
 (1) Pretrain the base speech translation model
 
