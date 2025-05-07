@@ -1,0 +1,14 @@
+[
+  {
+    "name": "common_voice_fr_17436959",
+    "tgt_text": "the house is nice",
+    "src_text": "La maison est jolie.",
+    "angle": -35.0
+  },
+  {
+    "name": "common_voice_fr_18565008",
+    "tgt_text": "instantly the orders of the officers propagated",
+    "src_text": "Aussit\u00f4t, les ordres des officiers se propag\u00e8rent.",
+    "angle": 25.213295807460643
+  }
+]

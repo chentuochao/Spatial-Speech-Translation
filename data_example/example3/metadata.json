@@ -1,0 +1,14 @@
+[
+  {
+    "name": "common_voice_fr_19190645",
+    "tgt_text": "it is found in a natural state in central america and north america",
+    "src_text": "Il se trouve \u00e0 l'\u00e9tat naturel en Am\u00e9rique centrale et en Am\u00e9rique du Nord.",
+    "angle": -0.0
+  },
+  {
+    "name": "common_voice_fr_19684365",
+    "tgt_text": "the filmmaker however encountered some bad luck during the film production",
+    "src_text": "Le r\u00e9alisateur a cependant connu quelques d\u00e9boires durant la production du film.",
+    "angle": 60.0
+  }
+]

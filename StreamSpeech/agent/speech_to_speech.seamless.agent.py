@@ -451,7 +451,6 @@ class StreamSpeechS2STAgent(SpeechToSpeechAgent):
             strict=(state["cfg"].checkpoint.checkpoint_shard_count == 1),
             num_shards=state["cfg"].checkpoint.checkpoint_shard_count,
         )
-        print(models)
         chunk_size = args.source_segment_size // 40
 
         self.models = models
@@ -535,7 +534,6 @@ class StreamSpeechS2STAgent(SpeechToSpeechAgent):
 
         if self.tgt_lang not in ["cmn", "deu", "eng", "fra", "ita", "spa"]:
             raise ValueError("lang not supported")
-        print("duration: ", duration)
         duration = duration.unsqueeze(0)
         wav = self.vocoder(
                 unit,
@@ -812,7 +810,6 @@ class StreamSpeechS2STAgent(SpeechToSpeechAgent):
         else:
             encoder_outs = [t2u_encoder_out]
             encoder_outs_aug = None
-        print("ctc_generator in ", encoder_outs[0]["encoder_out"][0].shape, self.tgt_units_indices)
         finalized = self.ctc_generator.generate(
             encoder_outs[0],
             prefix=self.tgt_units_indices,

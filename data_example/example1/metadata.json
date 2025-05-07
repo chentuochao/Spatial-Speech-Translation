@@ -1,0 +1,14 @@
+[
+  {
+    "name": "common_voice_fr_19659003",
+    "tgt_text": "the educational direction has also changed through the years",
+    "src_text": "L'orientation p\u00e9dagogique s'est aussi transform\u00e9e au cours des ann\u00e9es.",
+    "angle": -45.0
+  },
+  {
+    "name": "common_voice_fr_19297096",
+    "tgt_text": "singles were brought out in different dates over the five years",
+    "src_text": "Les singles sont sortis \u00e0 de diff\u00e9rentes dates au cours des cinq ann\u00e9es.",
+    "angle": -15.0
+  }
+]
