@@ -124,9 +124,6 @@ if __name__ == "__main__":
         "/gscratch/intelligentsystems/tuochao/offical_git/Spatial-Speech-Translation/data_example/example1",
         "/gscratch/intelligentsystems/tuochao/offical_git/Spatial-Speech-Translation/data_example/example2",
         "/gscratch/intelligentsystems/tuochao/offical_git/Spatial-Speech-Translation/data_example/example3",
-        "/gscratch/intelligentsystems/tuochao/offical_git/Spatial-Speech-Translation/data_example/023",
-        "/gscratch/intelligentsystems/tuochao/offical_git/Spatial-Speech-Translation/data_example/049",
-        "/gscratch/intelligentsystems/tuochao/offical_git/Spatial-Speech-Translation/data_example/014",
     ]
 
     split = "test"
